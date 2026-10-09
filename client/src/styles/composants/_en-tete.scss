@@ -33,6 +33,11 @@
         padding: vars.$espace-xs vars.$espace-s;
     }
 
+        &__outils {
+        display: flex;
+        gap: vars.$espace-xs;
+    }
+
     &__logo {
         font-weight: 700;
         color: var(--couleur-texte);
@@ -57,7 +62,7 @@
     }
 }
 
-.bouton-theme {
+.bouton-icone {
     min-width: 2.75rem;
     min-height: 2.75rem;
     border: 1px solid var(--couleur-bordure);
@@ -65,6 +70,8 @@
     background-color: transparent;
     color: var(--couleur-texte);
     cursor: pointer;
+    padding-inline: vars.$espace-xs;
+    font-weight: 600;
 
     &:hover {
         background-color: var(--couleur-fond);
