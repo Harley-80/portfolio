@@ -10,5 +10,12 @@
     "navigation.contact": "Contact",
     "theme.activerClair": "Activer le thème clair",
     "theme.activerSombre": "Activer le thème sombre",
-    "langue.changerVers": "Passer le site en anglais"
+    "langue.changerVers": "Passer le site en anglais",
+    "accueil.salutation": "Bonjour, je suis",
+    "accueil.titre": "Développeur Full-Stack JavaScript (MERN)",
+    "accueil.sousTitre": "Conception d'applications web et support informatique",
+    "accueil.accroche": "Je conçois des plateformes web complètes, de la base de données à l'interface, et j'assure leur maintenance.",
+    "accueil.localisation": "Libreville, Gabon · Disponible en freelance",
+    "accueil.voirProjets": "Voir mes projets",
+    "accueil.contacter": "Me contacter"
 }

@@ -10,5 +10,12 @@
     "navigation.contact": "Contact",
     "theme.activerClair": "Switch to light theme",
     "theme.activerSombre": "Switch to dark theme",
-    "langue.changerVers": "Switch the site to French"
+    "langue.changerVers": "Switch the site to French",
+    "accueil.salutation": "Hello, I'm",
+    "accueil.titre": "Full-Stack JavaScript Developer (MERN)",
+    "accueil.sousTitre": "Web application design and IT support",
+    "accueil.accroche": "I build complete web platforms, from the database to the interface, and I keep them running.",
+    "accueil.localisation": "Libreville, Gabon · Available for freelance work",
+    "accueil.voirProjets": "View my projects",
+    "accueil.contacter": "Contact me"
 }

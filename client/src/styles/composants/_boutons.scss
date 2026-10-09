@@ -1,0 +1,37 @@
+@use '../abstracts/variables' as vars;
+
+.bouton {
+    display: inline-block;
+    padding: 0.75rem vars.$espace-m;
+    border: 2px solid var(--couleur-primaire);
+    border-radius: vars.$rayon;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+
+    &--primaire {
+        background-color: var(--couleur-primaire);
+        color: var(--couleur-sur-primaire);
+
+        &:hover {
+            background-color: transparent;
+            color: var(--couleur-primaire);
+        }
+    }
+
+    &--secondaire {
+        background-color: transparent;
+        color: var(--couleur-primaire);
+
+        &:hover {
+            background-color: var(--couleur-primaire);
+            color: var(--couleur-sur-primaire);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bouton {
+        transition: none;
+    }
+}

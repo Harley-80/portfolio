@@ -1,16 +1,14 @@
-import { FournisseurLangue } from './contextes/FournisseurLangue.jsx'
+import { FournisseurLangue } from './contextes/FournisseurLangue'
 import { FournisseurTheme } from './contextes/FournisseurTheme'
 import EnTete from './composants/miseEnPage/EnTete'
+import PageAccueil from './pages/PageAccueil'
 
 function App() {
     return (
         <FournisseurLangue>
             <FournisseurTheme>
                 <EnTete />
-                <main id="contenu">
-                    <h1 id="accueil">Portfolio de NDOUYI Harley Fedy</h1>
-                    <p>Texte de test</p>
-                </main>
+                <PageAccueil />
             </FournisseurTheme>
         </FournisseurLangue>
     )
