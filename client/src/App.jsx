@@ -1,10 +1,15 @@
+import { FournisseurTheme } from './contextes/FournisseurTheme'
+import EnTete from './composants/miseEnPage/EnTete'
+
 function App() {
     return (
-        <main>
-            <h1>Portfolio de NDOUYI Harley Fedy</h1>
-            <p>Texte de test</p>
-            <a href="#contact">Lien de test</a>
-        </main>
+        <FournisseurTheme>
+            <EnTete />
+            <main id="contenu">
+                <h1 id="accueil">Portfolio de NDOUYI Harley Fedy</h1>
+                <p>Texte de test</p>
+            </main>
+        </FournisseurTheme>
     )
 }
 

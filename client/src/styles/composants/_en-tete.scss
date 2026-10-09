@@ -1,0 +1,72 @@
+@use '../abstracts/variables' as vars;
+
+.lien-evitement {
+    position: absolute;
+    top: -4rem;
+    left: vars.$espace-s;
+    z-index: 100;
+    padding: vars.$espace-xs vars.$espace-s;
+    border-radius: vars.$rayon;
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-sur-primaire);
+
+    &:focus {
+        top: vars.$espace-xs;
+    }
+}
+
+.en-tete {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: var(--couleur-surface);
+    border-bottom: 1px solid var(--couleur-bordure);
+
+    &__interieur {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: vars.$espace-s;
+        max-width: vars.$largeur-contenu;
+        margin-inline: auto;
+        padding: vars.$espace-xs vars.$espace-s;
+    }
+
+    &__logo {
+        font-weight: 700;
+        color: var(--couleur-texte);
+        text-decoration: none;
+    }
+
+    &__liens {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$espace-s;
+        padding: 0;
+        list-style: none;
+
+        a {
+            color: var(--couleur-texte);
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.bouton-theme {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: vars.$rayon;
+    background-color: transparent;
+    color: var(--couleur-texte);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--couleur-fond);
+    }
+}
