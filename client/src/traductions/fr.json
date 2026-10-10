@@ -17,5 +17,11 @@
     "accueil.accroche": "Je conçois des plateformes web complètes, de la base de données à l'interface, et j'assure leur maintenance.",
     "accueil.localisation": "Libreville, Gabon · Disponible en freelance",
     "accueil.voirProjets": "Voir mes projets",
-    "accueil.contacter": "Me contacter"
+    "accueil.contacter": "Me contacter",
+    "aPropos.titre": "À propos",
+    "aPropos.photoAlt": "Portrait de Harley Fedy NDOUYI",
+    "aPropos.paragraphe1": "Je suis développeur full-stack JavaScript, basé à Libreville au Gabon. Je conçois des applications web complètes avec la stack MERN (MongoDB, Express, React, Node.js) et TypeScript, en suivant l'architecture MVC. Titulaire d'une licence professionnelle en génie logiciel, je prépare un master en Software Engineering.",
+    "aPropos.paragraphe2": "Je travaille en freelance. J'assure aussi l'installation, la configuration et la maintenance de postes Windows et Microsoft Office. Mon projet Nody, une plateforme e-commerce que j'ai conçue et réalisée de bout en bout, illustre ma façon de travailler : une architecture claire, une API sécurisée et une interface responsive.",
+    "aPropos.cvDeveloppeur": "CV Développeur Full-Stack (PDF)",
+    "aPropos.cvAssistantIt": "CV Assistant IT (PDF)"
 }
