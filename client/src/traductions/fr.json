@@ -23,5 +23,18 @@
     "aPropos.paragraphe1": "Je suis développeur full-stack JavaScript, basé à Libreville au Gabon. Je conçois des applications web complètes avec la stack MERN (MongoDB, Express, React, Node.js) et TypeScript, en suivant l'architecture MVC. Titulaire d'une licence professionnelle en génie logiciel, je prépare un master en Software Engineering.",
     "aPropos.paragraphe2": "Je travaille en freelance. J'assure aussi l'installation, la configuration et la maintenance de postes Windows et Microsoft Office. Mon projet Nody, une plateforme e-commerce que j'ai conçue et réalisée de bout en bout, illustre ma façon de travailler : une architecture claire, une API sécurisée et une interface responsive.",
     "aPropos.cvDeveloppeur": "CV Développeur Full-Stack (PDF)",
-    "aPropos.cvAssistantIt": "CV Assistant IT (PDF)"
+    "aPropos.cvAssistantIt": "CV Assistant IT (PDF)",
+    "competences.titre": "Compétences",
+    "competences.langages": "Langages",
+    "competences.frontend": "Front-end",
+    "competences.backend": "Back-end",
+    "competences.basesDeDonnees": "Bases de données",
+    "competences.outils": "Outils et conception",
+    "competences.support": "Support informatique",
+    "competences.enCours": "En cours d'apprentissage",
+    "competences.apiRest": "API REST",
+    "competences.authentification": "Authentification",
+    "competences.windows": "Installation et configuration de Windows",
+    "competences.office": "Installation et configuration de Microsoft Office",
+    "competences.maintenance": "Maintenance informatique"
 }
