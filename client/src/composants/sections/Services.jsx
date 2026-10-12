@@ -10,13 +10,20 @@ function Services() {
             <ul className="services">
                 {SERVICES.map(service => (
                     <li key={service.id} className="services__carte">
-                        <span className="services__icone" aria-hidden="true">
-                            {service.icone}
-                        </span>
-                        <h3 className="services__titre">
-                            {t(`${service.cle}.titre`)}
-                        </h3>
-                        <p>{t(`${service.cle}.description`)}</p>
+                        <img
+                            className="services__image"
+                            src={service.image}
+                            alt=""
+                            width="800"
+                            height="446"
+                            loading="lazy"
+                        />
+                        <div className="services__corps">
+                            <h3 className="services__titre">
+                                {t(`${service.cle}.titre`)}
+                            </h3>
+                            <p>{t(`${service.cle}.description`)}</p>
+                        </div>
                     </li>
                 ))}
             </ul>

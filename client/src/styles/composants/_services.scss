@@ -5,20 +5,30 @@
     gap: vars.$espace-m;
     padding: 0;
     list-style: none;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
 
     &__carte {
         display: flex;
         flex-direction: column;
-        gap: vars.$espace-xs;
-        padding: vars.$espace-m;
+        overflow: hidden;
         border: 1px solid var(--couleur-bordure);
         border-radius: vars.$rayon;
         background-color: var(--couleur-surface);
     }
 
-    &__icone {
-        font-size: 2rem;
+    &__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-bottom: 1px solid var(--couleur-bordure);
+    }
+
+    &__corps {
+        display: flex;
+        flex-direction: column;
+        gap: vars.$espace-xs;
+        padding: vars.$espace-m;
     }
 
     &__titre {
