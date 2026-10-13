@@ -75,5 +75,9 @@
     "contact.erreurLimite": "Trop de messages envoyés. Réessayez dans une heure.",
     "contact.erreurNom": "Entrez votre nom (2 à 100 caractères).",
     "contact.erreurEmail": "Entrez une adresse email valide.",
-    "contact.erreurMessage": "Le message doit contenir entre 10 et 3000 caractères."
+    "contact.erreurMessage": "Le message doit contenir entre 10 et 3000 caractères.",
+    "piedDePage.droits": "Tous droits réservés.",
+    "piedDePage.conception": "Conçu et développé avec React, Vite, Sass, Express et MongoDB.",
+    "piedDePage.liens": "Liens du pied de page",
+    "piedDePage.retourEnHaut": "Retour en haut"
 }

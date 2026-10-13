@@ -75,5 +75,9 @@
     "contact.erreurLimite": "Too many messages sent. Please try again in an hour.",
     "contact.erreurNom": "Enter your name (2 to 100 characters).",
     "contact.erreurEmail": "Enter a valid email address.",
-    "contact.erreurMessage": "The message must contain between 10 and 3000 characters."
+    "contact.erreurMessage": "The message must contain between 10 and 3000 characters.",
+    "piedDePage.droits": "All rights reserved.",
+    "piedDePage.conception": "Designed and built with React, Vite, Sass, Express and MongoDB.",
+    "piedDePage.liens": "Footer links",
+    "piedDePage.retourEnHaut": "Back to top"
 }
