@@ -79,5 +79,7 @@
     "piedDePage.droits": "Tous droits réservés.",
     "piedDePage.conception": "Conçu et développé avec React, Vite, Sass, Express et MongoDB.",
     "piedDePage.liens": "Liens du pied de page",
-    "piedDePage.retourEnHaut": "Retour en haut"
+    "piedDePage.retourEnHaut": "Retour en haut",
+    "contact.qrLegende": "Scannez pour m'écrire sur WhatsApp",
+    "contact.qrAlt": "Code QR menant à ma conversation WhatsApp"
 }

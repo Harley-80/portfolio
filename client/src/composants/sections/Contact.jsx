@@ -3,6 +3,7 @@ import ChampFormulaire from '../ui/ChampFormulaire'
 import { useLangue } from '../../hooks/useLangue'
 import { useFormulaireContact } from '../../hooks/useFormulaireContact'
 import { COORDONNEES } from '../../donnees/contact'
+import CodeQr from '../ui/CodeQr'
 
 function Contact() {
     const { t } = useLangue()
@@ -58,6 +59,11 @@ function Contact() {
                             </li>
                         )}
                     </ul>
+                    <CodeQr
+                        valeur={`https://wa.me/${COORDONNEES.whatsappNumero}`}
+                        libelle={t('contact.qrAlt')}
+                        legende={t('contact.qrLegende')}
+                    />
                 </div>
 
                 <form
