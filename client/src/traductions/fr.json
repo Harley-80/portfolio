@@ -81,5 +81,7 @@
     "piedDePage.liens": "Liens du pied de page",
     "piedDePage.retourEnHaut": "Retour en haut",
     "contact.qrLegende": "Scannez pour m'écrire sur WhatsApp",
-    "contact.qrAlt": "Code QR menant à ma conversation WhatsApp"
+    "contact.qrAlt": "Code QR menant à ma conversation WhatsApp",
+    "navigation.ouvrirMenu": "Ouvrir le menu",
+    "navigation.fermerMenu": "Fermer le menu"
 }

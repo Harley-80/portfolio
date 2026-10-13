@@ -81,5 +81,7 @@
     "piedDePage.liens": "Footer links",
     "piedDePage.retourEnHaut": "Back to top",
     "contact.qrLegende": "Scan to message me on WhatsApp",
-    "contact.qrAlt": "QR code leading to my WhatsApp conversation"
+    "contact.qrAlt": "QR code leading to my WhatsApp conversation",
+    "navigation.ouvrirMenu": "Open menu",
+    "navigation.fermerMenu": "Close menu"
 }
