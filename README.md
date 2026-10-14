@@ -5,41 +5,51 @@ Le site est lui-même une preuve de compétence full-stack : projets, messages e
 
 ## Avancement
 
-| Étape | Contenu | Statut |
-|-------|---------|--------|
-| 1 | Serveur : API, modèles, authentification, sécurité, tests | Livrée et validée en local (MongoDB local). Connexion à Atlas en cours |
-| 2 | Front public : thèmes clair/sombre, sections, formulaire de contact, WCAG AA | À venir |
-| 3 | Tableau de bord administrateur | À venir |
-| 4 | Déploiement : Atlas, Render, Vercel | À venir |
+| Étape | Contenu                                                                      | Statut                                                        |
+| ----- | ---------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| 1     | Serveur : API, modèles, authentification, sécurité, tests                    | Livrée et validée (MongoDB local, puis Atlas)                 |
+| 2     | Front public : thèmes clair/sombre, sections, formulaire de contact, WCAG AA | Terminée (branche `etape-2-client`, Pull Request vers `main`) |
+| 3     | Tableau de bord administrateur                                               | À venir                                                       |
+| 4     | Déploiement : Atlas, Render, Vercel                                          | À venir                                                       |
 
 ## Versions
 
-Node v22, npm 10, Express 4, Mongoose 8, React 18 (étape 2), Vite, Sass.
+Node v22.13.0, npm 10.9.0, Express 4, Mongoose 8, React 19.3.0, Vite 8.3.4, react-router-dom 7.18.4, axios 1.20.0, Sass 1.105.1.
 
 ## Structure globale
 
 ```
 portfolio/
     README.md
-    .gitignore
-    client/                          (étape 2 : React + Vite + Sass)
-    serveur/                         (étape 1 : API Express)
-        README.md
-        package.json
-        .env.exemple
-        src/
-            app.js                   (assemblage Express)
-            serveur.js               (point d'entrée : connexion BD + écoute)
-            configuration/           (variables d'environnement, base de données)
-            modeles/                 (M : schémas Mongoose)
-            controleurs/             (C : logique de chaque route)
-            routes/                  (association URL -> contrôleur)
-            middlewares/             (authentification, erreurs, limiteurs, validation, CSRF)
-            validateurs/             (règles express-validator)
-            services/                (courriel)
-            utilitaires/             (JWT, erreurs, helpers)
-            scripts/                 (création de l'administrateur)
-        tests/
+        client/                          (étape 2 : React + Vite + Sass)
+            .env.exemple
+            public/                      (images, CV, favicons, robots.txt)
+            src/
+                composants/              (V : miseEnPage, sections, ui)
+                contextes/               (C : thème et langue)
+                hooks/                   (C : logique réutilisable)
+                services/                (M : appels à l'API via axios)
+                donnees/                 (contenus statiques)
+                traductions/             (fr.json, en.json)
+                pages/
+                styles/                  (Sass : abstracts, base, composants)
+        serveur/                         (étape 1 : API Express)
+            README.md
+            package.json
+            .env.exemple
+            src/
+                app.js                   (assemblage Express)
+                serveur.js               (point d'entrée : connexion BD + écoute)
+                configuration/           (variables d'environnement, base de données)
+                modeles/                 (M : schémas Mongoose)
+                controleurs/             (C : logique de chaque route)
+                routes/                  (association URL -> contrôleur)
+                middlewares/             (authentification, erreurs, limiteurs, validation, CSRF)
+                validateurs/             (règles express-validator)
+                services/                (courriel)
+                utilitaires/             (JWT, erreurs, helpers)
+                scripts/                 (création de l'administrateur)
+            tests/
 ```
 
 ## Diagrammes
@@ -122,6 +132,7 @@ sequenceDiagram
     S->>B: insertion
     S-->>A: 201 projet créé
 ```
+
 ## Journal d'avancement (07-08 octobre 2026)
 
 - Cadrage : positionnement, cibles, compétences, parcours, design (`#16213e`, thèmes clair et sombre, WCAG AA)
@@ -134,9 +145,19 @@ sequenceDiagram
 
 Reste à tester : modification et suppression de projets, routes de messages, envoi d'email (SMTP), cookies en production.
 
+## Journal d'avancement (étape 2, 13-14 octobre 2026)
+
+- Front React (Vite) : thèmes clair/sombre, bilingue FR/EN, navigation au clavier, lien d'évitement
+- Sections : Accueil, À propos, Compétences, Services, Projets (galerie accessible), Parcours, Contact
+- Projets chargés depuis l'API (`/api/projets`), formulaire de contact relié à `/api/messages`
+- SEO de base : métadonnées, Open Graph, favicons, `robots.txt`
+- Lighthouse (build de production, mobile) : 99 performance, 100 accessibilité, 100 bonnes pratiques, 100 SEO
+- Prochaine étape : tableau de bord administrateur
+
 ## Démarrage rapide
 
-Voir [serveur/README.md](serveur/README.md).
+- API : voir [serveur/README.md](serveur/README.md)
+- Client : voir [client/README.md](client/README.md)
 
 ## Convention de commits
 

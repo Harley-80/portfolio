@@ -1,16 +1,48 @@
-# React + Vite
+# Client - Portfolio de NDOUYI Harley Fedy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Front public du portfolio : React + Vite + Sass, bilingue (FR / EN), thèmes clair et sombre, accessibilité WCAG AA visée.
 
-Currently, two official plugins are available:
+## Versions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Node v22.13.0, npm 10.9.0, React 19.3.0, Vite 8.3.4, react-router-dom 7.18.4, axios 1.20.0, Sass 1.105.1.
 
-## React Compiler
+## Architecture (MVC côté client)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Vue** : `src/composants/` (miseEnPage, sections, ui) et `src/pages/`
+- **Contrôleur** : `src/hooks/` et `src/contextes/` (thème, langue, logique des formulaires et du chargement)
+- **Modèle** : `src/services/` (appels à l'API via axios) et `src/donnees/` (contenus statiques)
+- **Styles** : `src/styles/` (Sass : abstracts, base, composants), thèmes par variables CSS (`data-theme`)
+- **Traductions** : `src/traductions/fr.json` et `en.json`
 
-## Expanding the ESLint configuration
+## Installation et lancement
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Depuis le dossier `client` :
+
+```powershell
+npm install
+copy .env.exemple .env
+npm run dev
+```
+
+Le site est disponible sur http://localhost:5173. L'API doit tourner en parallèle (voir `../serveur/README.md`).
+
+## Variables d'environnement
+
+| Variable       | Rôle                                            | Exemple                     |
+| -------------- | ----------------------------------------------- | --------------------------- |
+| `VITE_API_URL` | URL de base de l'API, qui se termine par `/api` | `http://localhost:5000/api` |
+
+## Commandes
+
+| Commande          | Rôle                                            |
+| ----------------- | ----------------------------------------------- |
+| `npm run dev`     | Serveur de développement                        |
+| `npm run lint`    | Analyse du code avec ESLint                     |
+| `npm run build`   | Build de production dans `dist/`                |
+| `npm run preview` | Prévisualise le build sur http://localhost:4173 |
+
+## Accessibilité et performance
+
+- Lien d'évitement, navigation au clavier, focus visible, `prefers-reduced-motion`
+- Lighthouse (build de production, mobile) : 99 performance, 100 accessibilité, 100 bonnes pratiques, 100 SEO
+- Les mesures en mode `dev` ne sont pas représentatives : toujours auditer `npm run preview`
