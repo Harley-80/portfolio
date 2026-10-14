@@ -1,8 +1,25 @@
+import { Navigate, Route, Routes } from 'react-router-dom'
+import FournisseurAuthentification from '../contextes/FournisseurAuthentification'
+import RouteProtegee from '../composants/admin/RouteProtegee'
+import PageConnexion from './PageConnexion'
+import PageTableauDeBord from './PageTableauDeBord'
+
 function PageAdmin() {
     return (
-        <main className="conteneur">
-            <h1>Administration</h1>
-        </main>
+        <FournisseurAuthentification>
+            <Routes>
+                <Route index element={<PageConnexion />} />
+                <Route
+                    path="tableau-de-bord"
+                    element={
+                        <RouteProtegee>
+                            <PageTableauDeBord />
+                        </RouteProtegee>
+                    }
+                />
+                <Route path="*" element={<Navigate to="/admin" replace />} />
+            </Routes>
+        </FournisseurAuthentification>
     )
 }
 
