@@ -3,6 +3,8 @@ import FournisseurAuthentification from '../contextes/FournisseurAuthentificatio
 import RouteProtegee from '../composants/admin/RouteProtegee'
 import PageConnexion from './PageConnexion'
 import PageTableauDeBord from './PageTableauDeBord'
+import PageProjetsAdmin from './PageProjetsAdmin'
+import PageMessagesAdmin from './PageMessagesAdmin'
 
 function PageAdmin() {
     return (
@@ -15,8 +17,11 @@ function PageAdmin() {
                         <RouteProtegee>
                             <PageTableauDeBord />
                         </RouteProtegee>
-                    }
-                />
+                    }>
+                    <Route index element={<Navigate to="projets" replace />} />
+                    <Route path="projets" element={<PageProjetsAdmin />} />
+                    <Route path="messages" element={<PageMessagesAdmin />} />
+                </Route>
                 <Route path="*" element={<Navigate to="/admin" replace />} />
             </Routes>
         </FournisseurAuthentification>
