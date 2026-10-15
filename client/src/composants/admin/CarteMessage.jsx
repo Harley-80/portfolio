@@ -8,6 +8,7 @@ const formaterDate = date =>
 
 const CarteMessage = ({ message, onBasculerLu, onSupprimer }) => {
     const idTitre = useId()
+    const idConfirmation = useId()
     const [confirmation, setConfirmation] = useState(false)
     const boutonAnnuler = useRef(null)
 
@@ -52,7 +53,13 @@ const CarteMessage = ({ message, onBasculerLu, onSupprimer }) => {
                 </button>
 
                 {confirmation ?
-                    <span role="group" aria-label="Confirmation de suppression">
+                    <span role="group aria-labelledby={idConfirmation}">
+                        <span
+                            id={idConfirmation}
+                            className="carte-message__question">
+                            Supprimer définitivement le message de «{' '}
+                            {message.nom} » ? Cette action est irréversible.
+                        </span>
                         <button
                             type="button"
                             className="bouton carte-message__supprimer"

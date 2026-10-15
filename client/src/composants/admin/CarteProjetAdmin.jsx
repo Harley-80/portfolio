@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 const CarteProjetAdmin = ({ projet, onBasculerPublication, onSupprimer }) => {
     const idTitre = useId()
+    const idConfirmation = useId()
     const [confirmation, setConfirmation] = useState(false)
     const boutonAnnuler = useRef(null)
     const titre = projet.titre?.fr || 'Sans titre'
@@ -54,16 +55,18 @@ const CarteProjetAdmin = ({ projet, onBasculerPublication, onSupprimer }) => {
                 </button>
 
                 {confirmation ?
-                    <span role="group" aria-label="Confirmation de suppression">
+                    <span role="group" aria-labelledby={idConfirmation}>
+                        <span
+                            id={idConfirmation}
+                            className="carte-projet-admin__question">
+                            Supprimer définitivement « {titre} » ? Cette action
+                            est irréversible.
+                        </span>
                         <button
                             type="button"
                             className="bouton carte-projet-admin__supprimer"
                             onClick={() => onSupprimer(projet._id)}>
                             Confirmer la suppression
-                            <span className="visuellement-cache">
-                                {' '}
-                                du projet {titre}
-                            </span>
                         </button>
                         <button
                             type="button"
