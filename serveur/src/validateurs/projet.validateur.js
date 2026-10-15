@@ -1,15 +1,18 @@
 import { body } from 'express-validator'
 import { valider } from '../middlewares/valider.js'
 
-// En création : le champ est obligatoire. En modification : il est optionnel.
+// En création : le champ est obligatoire. En modification : il est optionnel,
+// mais s'il est envoyé, un champ obligatoire ne peut pas être vide.
 const champ = (nom, estCreation, requis = false) => {
     const chaine = body(nom)
-    return estCreation && requis ?
-            chaine
-                .exists({ checkFalsy: true })
-                .withMessage('Champ requis.')
-                .bail()
+    if (!requis) {
+        return chaine.optional()
+    }
+    const base =
+        estCreation ?
+            chaine.exists().withMessage('Champ requis.').bail()
         :   chaine.optional()
+    return base.trim().notEmpty().withMessage('Champ requis.').bail()
 }
 
 const optionsUrl = { protocols: ['http', 'https'], require_protocol: true }
