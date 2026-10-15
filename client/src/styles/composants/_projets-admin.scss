@@ -1,0 +1,93 @@
+@use '../abstracts/variables' as vars;
+
+.projets-admin {
+    display: grid;
+    gap: vars.$espace-m;
+
+    &__entete {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: vars.$espace-s;
+
+        h1 {
+            margin: 0;
+        }
+    }
+
+    &__liste {
+        display: grid;
+        gap: vars.$espace-m;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+.carte-projet-admin {
+    display: grid;
+    gap: vars.$espace-s;
+    padding: vars.$espace-m;
+    background: var(--couleur-surface);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: vars.$rayon;
+
+    &--brouillon {
+        border-style: dashed;
+    }
+
+    &__entete {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: vars.$espace-s;
+    }
+
+    &__titre {
+        margin: 0;
+        font-size: 1.125rem;
+    }
+
+    &__badge {
+        padding: 0.125rem 0.5rem;
+        border: 1px solid var(--couleur-primaire);
+        border-radius: 999px;
+        background: var(--couleur-primaire);
+        color: var(--couleur-sur-primaire);
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    &--brouillon &__badge {
+        border-color: var(--couleur-texte-attenue);
+        background: transparent;
+        color: var(--couleur-texte);
+    }
+
+    &__meta {
+        margin: 0;
+        color: var(--couleur-texte-attenue);
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$espace-s;
+
+        .bouton {
+            min-height: 2.75rem;
+        }
+
+        [role='group'] {
+            display: flex;
+            flex-wrap: wrap;
+            gap: vars.$espace-s;
+        }
+    }
+
+    &__supprimer {
+        border-color: var(--couleur-erreur);
+        color: var(--couleur-erreur);
+    }
+}
