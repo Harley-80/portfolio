@@ -126,15 +126,7 @@ const FormulaireProjet = ({ id }) => {
                         libelle="Technologies"
                         aide="Séparées par des virgules (20 maximum). Exemple : React, Node.js, MongoDB"
                     />
-                    <ChampFormulaire
-                        {...propsChamp('ordre')}
-                        libelle="Ordre d'affichage"
-                        type="number"
-                        min={0}
-                        max={999}
-                        inputMode="numeric"
-                        aide="Nombre de 0 à 999 (les plus petits s'affichent en premier). À la création, laisse vide pour placer le projet à la suite des autres."
-                    />
+
                     <ChampFormulaire
                         {...propsChamp('lienGithub')}
                         libelle="Lien GitHub"
@@ -159,12 +151,12 @@ const FormulaireProjet = ({ id }) => {
                     <legend>Publication</legend>
                     <ChampFormulaire
                         {...propsChamp('ordre')}
-                        aide="Nombre de 0 à 999 (les plus petits s'affichent en premier). À la création, laisse vide pour placer le projet à la suite des autres."
+                        libelle="Ordre d'affichage"
                         type="number"
                         min={0}
                         max={999}
                         inputMode="numeric"
-                        // aide="Nombre de 0 à 999. Les plus petits s'affichent en premier."
+                        aide="Nombre de 0 à 999 (les plus petits s'affichent en premier). À la création, laisse vide pour placer le projet à la suite des autres."
                     />
                     <div className="champ champ--case">
                         <label>
