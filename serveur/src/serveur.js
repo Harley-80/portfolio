@@ -1,12 +1,17 @@
 import app from './app.js';
 import { env } from './configuration/environnement.js';
-import { connecterBaseDeDonnees, deconnecterBaseDeDonnees } from './configuration/baseDeDonnees.js';
+import {
+    connecterBaseDeDonnees,
+    deconnecterBaseDeDonnees,
+} from './configuration/baseDeDonnees.js';
 
 const demarrer = async () => {
     await connecterBaseDeDonnees();
 
     const serveur = app.listen(env.port, () => {
-        console.log(`API démarrée sur le port ${env.port} (${env.environnement}).`);
+        console.log(
+            `API démarrée sur le port ${env.port} (${env.environnement}).`
+        );
     });
 
     const arreter = async (signal) => {

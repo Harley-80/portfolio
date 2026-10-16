@@ -6,7 +6,10 @@ import { env } from './configuration/environnement.js';
 import routes from './routes/index.js';
 import { limiteurGlobal } from './middlewares/limiteurs.js';
 import { verifierOrigine } from './middlewares/verifierOrigine.js';
-import { gestionnaireErreurs, routeIntrouvable } from './middlewares/gestionErreurs.js';
+import {
+    gestionnaireErreurs,
+    routeIntrouvable,
+} from './middlewares/gestionErreurs.js';
 
 const app = express();
 

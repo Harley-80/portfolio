@@ -34,7 +34,9 @@ test('requête modifiante depuis une origine inconnue : 403', async () => {
 });
 
 test('connexion avec un corps invalide : 422', async () => {
-    const reponse = await request(app).post('/api/authentification/connexion').send({ email: 'x' });
+    const reponse = await request(app)
+        .post('/api/authentification/connexion')
+        .send({ email: 'x' });
     assert.equal(reponse.status, 422);
 });
 

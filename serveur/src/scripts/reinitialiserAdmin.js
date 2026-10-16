@@ -1,18 +1,25 @@
-import { connecterBaseDeDonnees, deconnecterBaseDeDonnees } from '../configuration/baseDeDonnees.js';
+import {
+    connecterBaseDeDonnees,
+    deconnecterBaseDeDonnees,
+} from '../configuration/baseDeDonnees.js';
 import { Utilisateur } from '../modeles/utilisateur.modele.js';
 
 const reinitialiserAdmin = async () => {
     const motDePasse = process.env.ADMIN_MOT_DE_PASSE;
 
     if (!motDePasse || motDePasse.length < 12) {
-        throw new Error('ADMIN_MOT_DE_PASSE doit contenir au moins 12 caractères.');
+        throw new Error(
+            'ADMIN_MOT_DE_PASSE doit contenir au moins 12 caractères.'
+        );
     }
 
     await connecterBaseDeDonnees();
 
     const admin = await Utilisateur.findOne({ role: 'admin' });
     if (!admin) {
-        throw new Error("Aucun administrateur. Lance d'abord : npm run admin:creer");
+        throw new Error(
+            "Aucun administrateur. Lance d'abord : npm run admin:creer"
+        );
     }
 
     // Le hook pre('save') du modèle hache automatiquement le nouveau mot de passe.

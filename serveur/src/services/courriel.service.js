@@ -28,7 +28,9 @@ export const notifierNouveauMessage = async (message) => {
         from: env.smtp.expediteur,
         to: env.smtp.destinataire,
         replyTo: message.email,
-        subject: sansSautsDeLigne(`[Portfolio] ${message.sujet || 'Nouveau message'} - ${message.nom}`),
+        subject: sansSautsDeLigne(
+            `[Portfolio] ${message.sujet || 'Nouveau message'} - ${message.nom}`
+        ),
         text: `De : ${message.nom} <${message.email}>\n\n${message.contenu}`,
     });
 };

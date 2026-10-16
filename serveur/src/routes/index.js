@@ -9,7 +9,8 @@ const routeur = Router();
 routeur.get('/sante', (req, res) => {
     res.json({
         statut: 'ok',
-        baseDeDonnees: mongoose.connection.readyState === 1 ? 'connectee' : 'deconnectee',
+        baseDeDonnees:
+            mongoose.connection.readyState === 1 ? 'connectee' : 'deconnectee',
         horodatage: new Date().toISOString(),
     });
 });

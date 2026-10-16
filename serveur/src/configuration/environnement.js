@@ -2,7 +2,9 @@ const variablesRequises = ['MONGODB_URI', 'JWT_SECRET', 'CLIENT_URL'];
 
 const manquantes = variablesRequises.filter((nom) => !process.env[nom]);
 if (manquantes.length > 0) {
-    throw new Error(`Variables d'environnement manquantes : ${manquantes.join(', ')}`);
+    throw new Error(
+        `Variables d'environnement manquantes : ${manquantes.join(', ')}`
+    );
 }
 
 if (process.env.JWT_SECRET.length < 32) {

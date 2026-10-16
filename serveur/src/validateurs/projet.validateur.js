@@ -1,23 +1,22 @@
-import { body } from 'express-validator'
-import { valider } from '../middlewares/valider.js'
+import { body } from 'express-validator';
+import { valider } from '../middlewares/valider.js';
 
 // En création : le champ est obligatoire. En modification : il est optionnel,
 // mais s'il est envoyé, un champ obligatoire ne peut pas être vide.
 const champ = (nom, estCreation, requis = false) => {
-    const chaine = body(nom)
+    const chaine = body(nom);
     if (!requis) {
-        return chaine.optional()
+        return chaine.optional();
     }
-    const base =
-        estCreation ?
-            chaine.exists().withMessage('Champ requis.').bail()
-        :   chaine.optional()
-    return base.trim().notEmpty().withMessage('Champ requis.').bail()
-}
+    const base = estCreation
+        ? chaine.exists().withMessage('Champ requis.').bail()
+        : chaine.optional();
+    return base.trim().notEmpty().withMessage('Champ requis.').bail();
+};
 
-const optionsUrl = { protocols: ['http', 'https'], require_protocol: true }
+const optionsUrl = { protocols: ['http', 'https'], require_protocol: true };
 
-const regles = estCreation => [
+const regles = (estCreation) => [
     champ('titre.fr', estCreation, true)
         .isString()
         .trim()
@@ -52,7 +51,7 @@ const regles = estCreation => [
     champ('ordre', estCreation).isInt({ min: 0, max: 999 }).toInt(),
     champ('publie', estCreation).isBoolean().toBoolean(),
     valider,
-]
+];
 
-export const validateurCreationProjet = regles(true)
-export const validateurModificationProjet = regles(false)
+export const validateurCreationProjet = regles(true);
+export const validateurModificationProjet = regles(false);
