@@ -154,6 +154,26 @@ Reste à tester : modification et suppression de projets, routes de messages, en
 - Lighthouse (build de production, mobile) : 99 performance, 100 accessibilité, 100 bonnes pratiques, 100 SEO
 - Prochaine étape : tableau de bord administrateur
 
+## Journal d'avancement (étape 3, octobre 2026)
+
+- Tableau de bord administrateur sous `/admin`, chargé à la demande (`React.lazy`) : le site public n'appelle jamais `/api/authentification/moi`
+- Connexion par cookie `httpOnly`, session restaurée au rechargement, routes protégées (`RouteProtegee`)
+- Gestion des projets : liste, création, modification, publication/dépublication, suppression avec confirmation nominative
+- Gestion des messages : liste, marquer lu/non lu, suppression avec confirmation
+- Formulaires accessibles : label relié, erreurs annoncées (`aria-invalid`, `aria-describedby`), focus sur le premier champ en erreur
+- Validation serveur renforcée : titre et résumé en français obligatoires, chemins d'images restreints à `/images/projets/<nom>.(webp|png|jpg|jpeg)`
+
+### Règles métier
+
+- **Ordre des projets** : à la création, si le champ est vide, le serveur attribue le plus grand `ordre` existant + 1 (plafond 999). Le champ reste modifiable ensuite. Les projets s'affichent par `ordre` croissant.
+- **Images** : noms de fichiers en minuscules avec tirets, par exemple `nody-accueil.webp`. Le nom de fichier sert de clé de traduction : `projets.legende.<nom>` et `projets.alt.<nom>` dans `fr.json` et `en.json`.
+
+### Reste à faire
+
+- Audit d'accessibilité final du tableau de bord (contraste du bouton « Confirmer la suppression »)
+- Envoi d'email (SMTP) et cookies en production
+- Étape 4 : déploiement (Atlas, Render, Vercel)
+
 ## Démarrage rapide
 
 - API : voir [serveur/README.md](serveur/README.md)
