@@ -10,7 +10,7 @@ export const VALEURS_VIDES = {
     lienDemo: '',
     lienGithub: '',
     images: '',
-    ordre: '0',
+    ordre: '',
     publie: false,
 }
 
@@ -68,21 +68,25 @@ export const CHEMIN_IMAGE_VALIDE =
 
 export const listerImages = texte => decouperListe(texte, /\r?\n/)
 
-export const valeursVersDonnees = valeurs => ({
-    titre: { fr: valeurs.titreFr.trim(), en: valeurs.titreEn.trim() },
-    resume: { fr: valeurs.resumeFr.trim(), en: valeurs.resumeEn.trim() },
-    probleme: {
-        fr: valeurs.problemeFr.trim(),
-        en: valeurs.problemeEn.trim(),
-    },
-    role: valeurs.role.trim(),
-    stack: decouperListe(valeurs.stack, ','),
-    lienDemo: valeurs.lienDemo.trim(),
-    lienGithub: valeurs.lienGithub.trim(),
-    images: listerImages(valeurs.images),
-    ordre: valeurs.ordre.trim(),
-    publie: valeurs.publie,
-})
+export const valeursVersDonnees = valeurs => {
+    const ordre = valeurs.ordre.trim()
+
+    return {
+        titre: { fr: valeurs.titreFr.trim(), en: valeurs.titreEn.trim() },
+        resume: { fr: valeurs.resumeFr.trim(), en: valeurs.resumeEn.trim() },
+        probleme: {
+            fr: valeurs.problemeFr.trim(),
+            en: valeurs.problemeEn.trim(),
+        },
+        role: valeurs.role.trim(),
+        stack: decouperListe(valeurs.stack, ','),
+        lienDemo: valeurs.lienDemo.trim(),
+        lienGithub: valeurs.lienGithub.trim(),
+        images: listerImages(valeurs.images),
+        ...(ordre !== '' && { ordre }),
+        publie: valeurs.publie,
+    }
+}
 
 export const erreursVersChamps = details => {
     const erreurs = {}
