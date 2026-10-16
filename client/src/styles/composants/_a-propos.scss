@@ -1,0 +1,33 @@
+@use '../abstracts/variables' as vars;
+
+.a-propos {
+    display: grid;
+    gap: vars.$espace-l;
+    align-items: center;
+
+    @media (min-width: vars.$rupture-tablette) {
+        grid-template-columns: 16rem 1fr;
+    }
+
+    &__photo {
+        width: 100%;
+        max-width: 16rem;
+        height: auto;
+        border: 3px solid var(--couleur-bordure);
+        border-radius: vars.$rayon;
+    }
+
+    &__texte {
+        display: flex;
+        flex-direction: column;
+        gap: vars.$espace-s;
+        max-width: 42rem;
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$espace-s;
+        margin-top: vars.$espace-xs;
+    }
+}

@@ -1,0 +1,39 @@
+@use '../abstracts/variables' as vars;
+
+.competences {
+    display: grid;
+    gap: vars.$espace-m;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+
+    &__groupe {
+        padding: vars.$espace-m;
+        border: 1px solid var(--couleur-bordure);
+        border-radius: vars.$rayon;
+        background-color: var(--couleur-surface);
+
+        &--en-cours {
+            border-style: dashed;
+        }
+    }
+
+    &__titre {
+        margin-bottom: vars.$espace-s;
+        font-size: 1.125rem;
+    }
+
+    &__liste {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$espace-xs;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__element {
+        padding: 0.25rem 0.75rem;
+        border: 1px solid var(--couleur-bordure);
+        border-radius: 999px;
+        background-color: var(--couleur-fond);
+        font-size: 0.9375rem;
+    }
+}

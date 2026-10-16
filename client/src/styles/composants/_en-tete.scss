@@ -1,0 +1,109 @@
+@use '../abstracts/variables' as vars;
+
+.lien-evitement {
+    position: absolute;
+    top: -4rem;
+    left: vars.$espace-s;
+    z-index: 100;
+    padding: vars.$espace-xs vars.$espace-s;
+    border-radius: vars.$rayon;
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-sur-primaire);
+
+    &:focus {
+        top: vars.$espace-xs;
+    }
+}
+
+.en-tete {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: var(--couleur-surface);
+    border-bottom: 1px solid var(--couleur-bordure);
+
+    &__interieur {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: vars.$espace-s;
+        max-width: vars.$largeur-contenu;
+        margin-inline: auto;
+        padding: vars.$espace-xs vars.$espace-s;
+    }
+
+    &__outils {
+        display: flex;
+        gap: vars.$espace-xs;
+    }
+
+    &__logo {
+        font-weight: 700;
+        color: var(--couleur-texte);
+        text-decoration: none;
+    }
+
+    &__nav {
+        display: none;
+        order: 3;
+        width: 100%;
+
+        &--ouvert {
+            display: block;
+        }
+
+        @media (min-width: vars.$rupture-bureau) {
+            display: block;
+            order: 0;
+            width: auto;
+        }
+    }
+
+    &__liens {
+        display: flex;
+        flex-direction: column;
+        gap: vars.$espace-xs;
+        padding: 0;
+        list-style: none;
+
+        @media (min-width: vars.$rupture-bureau) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: vars.$espace-s;
+        }
+
+        a {
+            display: inline-block;
+            padding-block: 0.5rem;
+            color: var(--couleur-texte);
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__burger {
+        @media (min-width: vars.$rupture-bureau) {
+            display: none;
+        }
+    }
+}
+
+.bouton-icone {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: vars.$rayon;
+    background-color: transparent;
+    color: var(--couleur-texte);
+    cursor: pointer;
+    padding-inline: vars.$espace-xs;
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--couleur-fond);
+    }
+}

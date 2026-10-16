@@ -1,0 +1,25 @@
+@use '../abstracts/variables' as vars;
+
+.code-qr {
+    display: none;
+    margin: 0;
+
+    @media (min-width: vars.$rupture-tablette) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: vars.$espace-xs;
+    }
+
+    svg {
+        width: 10rem;
+        height: auto;
+        border: 1px solid var(--couleur-bordure);
+        border-radius: vars.$rayon;
+    }
+
+    &__legende {
+        font-size: 0.9375rem;
+        color: var(--couleur-texte-attenue);
+    }
+}

@@ -1,0 +1,103 @@
+@use '../abstracts/variables' as vars;
+
+.contact {
+    display: grid;
+    gap: vars.$espace-l;
+
+    @media (min-width: vars.$rupture-tablette) {
+        grid-template-columns: 1fr 1.5fr;
+    }
+
+    &__infos {
+        display: flex;
+        flex-direction: column;
+        gap: vars.$espace-s;
+    }
+
+    &__sous-titre {
+        font-size: 1.125rem;
+    }
+
+    &__liens {
+        display: flex;
+        flex-direction: column;
+        gap: vars.$espace-xs;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__formulaire {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: vars.$espace-s;
+        padding: vars.$espace-m;
+        border: 1px solid var(--couleur-bordure);
+        border-radius: vars.$rayon;
+        background-color: var(--couleur-surface);
+    }
+
+    &__note {
+        font-size: 0.875rem;
+        color: var(--couleur-texte-attenue);
+    }
+
+    &__piege {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+
+    &__envoi {
+        align-self: flex-start;
+    }
+
+    &__retour {
+        min-height: 1.5rem;
+    }
+
+    &__message {
+        font-weight: 600;
+
+        &--succes {
+            color: var(--couleur-succes);
+        }
+
+        &--erreur {
+            color: var(--couleur-erreur);
+        }
+    }
+}
+
+.champ {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    &__libelle {
+        font-weight: 600;
+    }
+
+    &__controle {
+        padding: 0.625rem 0.75rem;
+        border: 1px solid var(--couleur-texte-attenue);
+        border-radius: vars.$rayon;
+        background-color: var(--couleur-fond);
+        color: var(--couleur-texte);
+
+        &[aria-invalid='true'] {
+            border: 2px solid var(--couleur-erreur);
+        }
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    &__erreur {
+        font-size: 0.9375rem;
+        color: var(--couleur-erreur);
+    }
+}

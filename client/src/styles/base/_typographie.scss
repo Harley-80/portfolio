@@ -1,0 +1,19 @@
+@use '../abstracts/variables' as vars;
+
+body {
+    font-family: vars.$police-texte;
+    font-size: vars.$taille-base;
+    line-height: 1.6;
+    color: var(--couleur-texte);
+    background-color: var(--couleur-fond);
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+a {
+    color: var(--couleur-accent);
+}

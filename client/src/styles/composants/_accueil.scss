@@ -1,0 +1,47 @@
+@use '../abstracts/variables' as vars;
+
+.accueil {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 4.5rem);
+    padding-block: vars.$espace-xl;
+
+    &__contenu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: vars.$espace-xs;
+    }
+
+    &__salutation,
+    &__localisation {
+        color: var(--couleur-texte-attenue);
+    }
+
+    &__nom {
+        font-size: clamp(2.25rem, 7vw, 4rem);
+    }
+
+    &__titre {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-weight: 600;
+        color: var(--couleur-accent);
+    }
+
+    &__sous-titre {
+        font-size: 1.125rem;
+    }
+
+    &__accroche {
+        max-width: 40rem;
+        margin-top: vars.$espace-xs;
+        color: var(--couleur-texte-attenue);
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: vars.$espace-s;
+        margin-top: vars.$espace-m;
+    }
+}

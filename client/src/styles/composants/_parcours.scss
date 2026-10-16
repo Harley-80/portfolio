@@ -1,0 +1,55 @@
+@use '../abstracts/variables' as vars;
+
+.parcours {
+    display: grid;
+    gap: vars.$espace-l;
+
+    @media (min-width: vars.$rupture-tablette) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__sous-titre {
+        margin-bottom: vars.$espace-m;
+        font-size: 1.25rem;
+    }
+
+    &__liste {
+        padding: 0;
+        list-style: none;
+        border-left: 2px solid var(--couleur-bordure);
+    }
+
+    &__element {
+        position: relative;
+        padding: 0 0 vars.$espace-m vars.$espace-m;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0.4rem;
+            left: -0.4rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--couleur-accent);
+        }
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    &__annees {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--couleur-texte-attenue);
+    }
+
+    &__intitule {
+        font-size: 1.0625rem;
+    }
+
+    &__detail {
+        color: var(--couleur-texte-attenue);
+    }
+}
