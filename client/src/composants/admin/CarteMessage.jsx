@@ -11,10 +11,15 @@ const CarteMessage = ({ message, onBasculerLu, onSupprimer }) => {
     const idConfirmation = useId()
     const [confirmation, setConfirmation] = useState(false)
     const boutonAnnuler = useRef(null)
+    const boutonSupprimer = useRef(null)
+    const retourDepuisAnnulation = useRef(false)
 
     useEffect(() => {
         if (confirmation) {
             boutonAnnuler.current?.focus()
+        } else if (retourDepuisAnnulation.current) {
+            boutonSupprimer.current?.focus()
+            retourDepuisAnnulation.current = false
         }
     }, [confirmation])
 
@@ -53,7 +58,7 @@ const CarteMessage = ({ message, onBasculerLu, onSupprimer }) => {
                 </button>
 
                 {confirmation ?
-                    <span role="group aria-labelledby={idConfirmation}">
+                    <span role="group" aria-labelledby={idConfirmation}>
                         <span
                             id={idConfirmation}
                             className="carte-message__question">
@@ -70,13 +75,17 @@ const CarteMessage = ({ message, onBasculerLu, onSupprimer }) => {
                             type="button"
                             className="bouton"
                             ref={boutonAnnuler}
-                            onClick={() => setConfirmation(false)}>
+                            onClick={() => {
+                                retourDepuisAnnulation.current = true
+                                setConfirmation(false)
+                            }}>
                             Annuler
                         </button>
                     </span>
                 :   <button
                         type="button"
                         className="bouton"
+                        ref={boutonSupprimer}
                         onClick={() => setConfirmation(true)}>
                         Supprimer
                     </button>
