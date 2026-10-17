@@ -17,12 +17,12 @@ export const signerJeton = (utilisateur) =>
 export const verifierJeton = (jeton) =>
     jwt.verify(jeton, env.jwtSecret, { algorithms: ['HS256'] });
 
-// En production, le front (Vercel) et l'API (Render) sont sur des domaines différents :
-// le cookie doit être "secure" + SameSite=None. En local : Lax.
+// En production, Vercel relaie /api vers Render : le navigateur ne voit qu'un seul site.
+// Le cookie reste de première partie : "secure" en production, SameSite=Lax partout.
 export const optionsCookieBase = () => ({
     httpOnly: true,
     secure: env.estProduction,
-    sameSite: env.estProduction ? 'none' : 'lax',
+    sameSite: 'lax',
     path: '/',
 });
 
