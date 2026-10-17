@@ -12,10 +12,16 @@ const projetSchema = new mongoose.Schema(
         resume: texteBilingue(true),
         probleme: texteBilingue(false),
         role: { type: String, trim: true, maxlength: 120 },
-        stack: { type: [{ type: String, trim: true, maxlength: 40 }], default: [] },
+        stack: {
+            type: [{ type: String, trim: true, maxlength: 40 }],
+            default: [],
+        },
         lienDemo: { type: String, trim: true, maxlength: 300 },
         lienGithub: { type: String, trim: true, maxlength: 300 },
-        images: { type: [{ type: String, trim: true, maxlength: 300 }], default: [] },
+        images: {
+            type: [{ type: String, trim: true, maxlength: 300 }],
+            default: [],
+        },
         ordre: { type: Number, default: 0, min: 0 },
         publie: { type: Boolean, default: false },
     },

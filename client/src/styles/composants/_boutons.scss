@@ -5,8 +5,14 @@
     padding: 0.75rem vars.$espace-m;
     border: 2px solid var(--couleur-primaire);
     border-radius: vars.$rayon;
+    background-color: transparent;
+    color: var(--couleur-primaire);
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
     font-weight: 600;
     text-decoration: none;
+    cursor: pointer;
     transition:
         background-color 0.2s,
         color 0.2s;
@@ -30,8 +36,6 @@
             color: var(--couleur-sur-primaire);
         }
     }
-
-    cursor: pointer;
 
     &:disabled {
         opacity: 0.6;

@@ -18,8 +18,12 @@ const presenterUtilisateur = (utilisateur) => ({
 export const connexion = enveloppeAsync(async (req, res) => {
     const { email, motDePasse } = matchedData(req, { locations: ['body'] });
 
-    const utilisateur = await Utilisateur.findOne({ email }).select('+motDePasse');
-    const valide = utilisateur ? await utilisateur.comparerMotDePasse(motDePasse) : false;
+    const utilisateur = await Utilisateur.findOne({ email }).select(
+        '+motDePasse'
+    );
+    const valide = utilisateur
+        ? await utilisateur.comparerMotDePasse(motDePasse)
+        : false;
 
     // Même message dans les deux cas : on ne révèle pas si l'email existe.
     if (!valide) {
@@ -36,5 +40,8 @@ export const deconnexion = (req, res) => {
 };
 
 export const moi = (req, res) => {
-    res.json({ succes: true, utilisateur: presenterUtilisateur(req.utilisateur) });
+    res.json({
+        succes: true,
+        utilisateur: presenterUtilisateur(req.utilisateur),
+    });
 };
