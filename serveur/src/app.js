@@ -13,8 +13,8 @@ import {
 
 const app = express();
 
-// Production : navigateur -> Vercel -> Render -> API. On fait confiance aux deux proxys pour lire l'IP réelle du visiteur.
-app.set('trust proxy', 2);
+// Production : navigateur -> Vercel -> Render (CDN puis proxy interne) -> API. Trois sauts de confiance pour lire l'IP réelle du visiteur.
+app.set('trust proxy', 3);
 app.disable('x-powered-by');
 
 app.use(helmet());
