@@ -13,8 +13,8 @@ import {
 
 const app = express();
 
-// Render place l'API derrière un proxy : nécessaire pour que le limiteur voie la vraie IP.
-app.set('trust proxy', 1);
+// Production : navigateur -> Vercel -> Render -> API. On fait confiance aux deux proxys pour lire l'IP réelle du visiteur.
+app.set('trust proxy', 2);
 app.disable('x-powered-by');
 
 app.use(helmet());
