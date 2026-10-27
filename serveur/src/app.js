@@ -13,25 +13,10 @@ import {
 
 const app = express();
 
-// Réglage provisoire (1 saut) : protection rétablie le temps de mesurer la chaîne réelle.
-app.set('trust proxy', 1);
+// Chaîne mesurée en production : visiteur -> Vercel -> CDN Render -> proxy interne Render -> API.
+// X-Forwarded-For contient 4 adresses, on fait donc confiance à 4 sauts pour lire l'IP du visiteur.
+app.set('trust proxy', 4);
 app.disable('x-powered-by');
-
-// DIAGNOSTIC TEMPORAIRE, à supprimer : adresses vues par l'API lors d'une tentative de connexion.
-app.use((req, res, next) => {
-    if (req.method === 'POST' && req.path.endsWith('/connexion')) {
-        console.log(
-            'diag-ip',
-            JSON.stringify({
-                ip: req.ip,
-                xff: req.headers['x-forwarded-for'],
-                pair: req.socket.remoteAddress,
-                realIp: req.headers['x-real-ip'],
-            })
-        );
-    }
-    next();
-});
 
 app.use(helmet());
 app.use(
