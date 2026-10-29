@@ -5,12 +5,12 @@ Le site est lui-même une preuve de compétence full-stack : projets, messages e
 
 ## Avancement
 
-| Étape | Contenu                                                                      | Statut                                                        |
-| ----- | ---------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| 1     | Serveur : API, modèles, authentification, sécurité, tests                    | Livrée et validée (MongoDB local, puis Atlas)                 |
-| 2     | Front public : thèmes clair/sombre, sections, formulaire de contact, WCAG AA | Terminée (branche `etape-2-client`, Pull Request vers `main`) |
-| 3     | Tableau de bord administrateur                                               | À venir                                                       |
-| 4     | Déploiement : Atlas, Render, Vercel                                          | À venir                                                       |
+| Étape | Contenu | Statut |
+| ----- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------- | --- |
+| 1 | Serveur : API, modèles, authentification, sécurité, tests | Livrée et validée (MongoDB local, puis Atlas) |
+| 2 | Front public : thèmes clair/sombre, sections, formulaire de contact, WCAG AA | Livrée et fusionnée dans `main` |
+| 3 | Tableau de bord administrateur | Livrée et fusionnée dans `main` |
+| 4 | Déploiement : Atlas, Render, Vercel | En production (finitions : documentation, nettoyage des branches) | |
 
 ## Versions
 
@@ -173,6 +173,24 @@ Reste à tester : modification et suppression de projets, routes de messages, en
 - Audit d'accessibilité final du tableau de bord (contraste du bouton « Confirmer la suppression »)
 - Envoi d'email (SMTP) et cookies en production
 - Étape 4 : déploiement (Atlas, Render, Vercel)
+
+## Journal d'avancement (étape 4, octobre 2026)
+
+### Architecture de production
+
+Visiteur → Vercel (client React, `/api/*` réécrit) → Render (API Express) → MongoDB Atlas
+
+- **Client** : Vercel, dossier racine `client`, variable `VITE_API_URL=/api`. Le fichier `client/vercel.json` redirige `/api/*` vers l'API Render et renvoie les autres routes vers `index.html` (application monopage).
+- **API** : Render (plan gratuit), branche `main`, déploiement automatique à chaque fusion. Après une période d'inactivité, la première requête peut prendre environ 50 secondes.
+- **Base de données** : MongoDB Atlas. L'utilisateur applicatif est limité au rôle `readWrite` sur la seule base `portfolio` (moindre privilège). Render n'ayant pas d'adresse IP fixe, la liste d'accès réseau autorise `0.0.0.0/0`.
+- **Même origine côté navigateur** : le cookie de session reste de premier niveau (`SameSite=Lax`).
+
+### Sécurité en production
+
+- Cookie de session `httpOnly`, `Secure` en production, `SameSite=Lax`, avec contrôle de l'en-tête `Origin` contre `CLIENT_URL` (protection CSRF).
+- Limiteurs de débit en mémoire : global 300 requêtes / 15 min, connexion 5 tentatives / 15 min, contact 5 messages / 60 min.
+- `trust proxy` vaut 4. Valeur mesurée dans les journaux Render : `X-Forwarded-For` contient 4 adresses (visiteur, Vercel, CDN Render, proxy interne Render). À remesurer si l'hébergement change, sinon le limiteur ne distingue plus les visiteurs.
+- `robots.txt` interdit l'indexation de `/admin` (simple consigne pour les moteurs de recherche, pas une protection : l'accès reste protégé par l'authentification).
 
 ## Démarrage rapide
 
