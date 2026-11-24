@@ -35,6 +35,7 @@ export function useFormulaireContact() {
     const modifierChamp = evenement => {
         const { name, value } = evenement.target
         setValeurs(actuelles => ({ ...actuelles, [name]: value }))
+        setStatut(actuel => (actuel === 'envoi' ? actuel : 'inactif'))
     }
 
     const soumettre = async evenement => {
