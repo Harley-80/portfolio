@@ -1,5 +1,6 @@
 const variablesRequises = ['MONGODB_URI', 'JWT_SECRET', 'CLIENT_URL'];
 
+// Vérification de la présence des variables d'environnement requises
 const manquantes = variablesRequises.filter((nom) => !process.env[nom]);
 if (manquantes.length > 0) {
     throw new Error(
@@ -7,6 +8,7 @@ if (manquantes.length > 0) {
     );
 }
 
+// Vérification de la longueur de JWT_SECRET
 if (process.env.JWT_SECRET.length < 32) {
     throw new Error('JWT_SECRET doit contenir au moins 32 caractères.');
 }
@@ -20,12 +22,11 @@ export const env = Object.freeze({
     mongoUri: process.env.MONGODB_URI,
     jwtSecret: process.env.JWT_SECRET,
     urlClient: process.env.CLIENT_URL.replace(/\/+$/, ''),
-    smtp: Object.freeze({
-        hote: process.env.SMTP_HOTE || '',
-        port: Number(process.env.SMTP_PORT) || 587,
-        utilisateur: process.env.SMTP_UTILISATEUR || '',
-        motDePasse: process.env.SMTP_MOT_DE_PASSE || '',
-        expediteur: process.env.SMTP_EXPEDITEUR || '',
-        destinataire: process.env.SMTP_DESTINATAIRE || '',
+    courriel: Object.freeze({
+        cleApi: process.env.COURRIEL_CLE_API || '',
+        expediteur:
+            process.env.COURRIEL_EXPEDITEUR ||
+            'Portfolio <onboarding@resend.dev>',
+        destinataire: process.env.COURRIEL_DESTINATAIRE || '',
     }),
 });

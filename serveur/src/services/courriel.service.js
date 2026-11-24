@@ -1,36 +1,42 @@
-import nodemailer from 'nodemailer';
 import { env } from '../configuration/environnement.js';
 
-let transporteur = null;
-
-const obtenirTransporteur = () => {
-    if (!env.smtp.hote) {
-        return null;
-    }
-    transporteur ??= nodemailer.createTransport({
-        host: env.smtp.hote,
-        port: env.smtp.port,
-        secure: env.smtp.port === 465,
-        auth: { user: env.smtp.utilisateur, pass: env.smtp.motDePasse },
-    });
-    return transporteur;
-};
+const URL_API_COURRIEL = 'https://api.resend.com/emails';
+const DELAI_MAXIMUM_MS = 10_000;
 
 const sansSautsDeLigne = (texte) => String(texte).replace(/[\r\n]+/g, ' ');
 
+const estConfigure = () =>
+    Boolean(env.courriel.cleApi && env.courriel.destinataire);
+
 // Texte brut uniquement : aucune injection HTML possible.
+// Envoi par API HTTPS (port 443) : Render bloque le SMTP sur le plan gratuit.
 export const notifierNouveauMessage = async (message) => {
-    const transport = obtenirTransporteur();
-    if (!transport) {
+    if (!estConfigure()) {
         return;
     }
-    await transport.sendMail({
-        from: env.smtp.expediteur,
-        to: env.smtp.destinataire,
-        replyTo: message.email,
-        subject: sansSautsDeLigne(
-            `[Portfolio] ${message.sujet || 'Nouveau message'} - ${message.nom}`
-        ),
-        text: `De : ${message.nom} <${message.email}>\n\n${message.contenu}`,
+
+    const reponse = await fetch(URL_API_COURRIEL, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${env.courriel.cleApi}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            from: env.courriel.expediteur,
+            to: [env.courriel.destinataire],
+            reply_to: message.email,
+            subject: sansSautsDeLigne(
+                `[Portfolio] ${message.sujet || 'Nouveau message'} - ${message.nom}`
+            ),
+            text: `De : ${message.nom} <${message.email}>\n\n${message.contenu}`,
+        }),
+        signal: AbortSignal.timeout(DELAI_MAXIMUM_MS),
     });
+
+    if (!reponse.ok) {
+        const detail = await reponse.text().catch(() => '');
+        throw new Error(
+            `Le service de courriel a répondu ${reponse.status} : ${detail.slice(0, 200)}`
+        );
+    }
 };

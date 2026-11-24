@@ -17,13 +17,13 @@ cp .env.exemple .env      # PowerShell : Copy-Item .env.exemple .env
 
 Renseigne ensuite `.env` :
 
-| Variable | Rôle |
-|----------|------|
-| `MONGODB_URI` | URI MongoDB (local ou Atlas) |
-| `JWT_SECRET` | Chaîne aléatoire de 32 caractères minimum |
-| `CLIENT_URL` | URL exacte du front autorisé (CORS + contrôle d'origine) |
-| `ADMIN_EMAIL`, `ADMIN_MOT_DE_PASSE` | Utilisés une seule fois par `npm run admin:creer` (mot de passe : 12 caractères minimum) |
-| `SMTP_*` | Optionnel : notification par courriel à chaque message reçu |
+| Variable                                                           | Rôle                                                                                     |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| `MONGODB_URI`                                                      | URI MongoDB (local ou Atlas)                                                             |
+| `JWT_SECRET`                                                       | Chaîne aléatoire de 32 caractères minimum                                                |
+| `CLIENT_URL`                                                       | URL exacte du front autorisé (CORS + contrôle d'origine)                                 |
+| `ADMIN_EMAIL`, `ADMIN_MOT_DE_PASSE`                                | Utilisés une seule fois par `npm run admin:creer` (mot de passe : 12 caractères minimum) |
+| `COURRIEL_CLE_API`, `COURRIEL_EXPEDITEUR`, `COURRIEL_DESTINATAIRE` | Optionnel : notification par courriel (API Resend, HTTPS) à chaque message reçu          |
 
 Génère un secret JWT :
 
@@ -33,32 +33,32 @@ node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
 
 ## Scripts
 
-| Commande | Action |
-|----------|--------|
-| `npm run dev` | Démarre l'API en mode surveillance |
-| `npm start` | Démarre l'API (production) |
-| `npm run admin:creer` | Crée l'unique administrateur |
-| `npm test` | Lance les tests (runner natif de Node + Supertest) |
+| Commande                      | Action                                                |
+| ----------------------------- | ----------------------------------------------------- |
+| `npm run dev`                 | Démarre l'API en mode surveillance                    |
+| `npm start`                   | Démarre l'API (production)                            |
+| `npm run admin:creer`         | Crée l'unique administrateur                          |
+| `npm test`                    | Lance les tests (runner natif de Node + Supertest)    |
 | `npm run admin:reinitialiser` | Remplace le mot de passe de l'administrateur existant |
 
 ## Endpoints
 
-| Méthode | URL | Accès | Description |
-|---------|-----|-------|-------------|
-| GET | `/api/sante` | Public | État de l'API et de la base |
-| POST | `/api/authentification/connexion` | Public (5 essais / 15 min) | Ouvre la session (cookie httpOnly) |
-| POST | `/api/authentification/deconnexion` | Public | Ferme la session |
-| GET | `/api/authentification/moi` | Admin | Utilisateur connecté |
-| GET | `/api/projets` | Public | Projets publiés |
-| GET | `/api/projets/:id` | Public | Un projet publié |
-| GET | `/api/projets/admin/liste` | Admin | Tous les projets |
-| POST | `/api/projets` | Admin | Crée un projet |
-| PUT | `/api/projets/:id` | Admin | Modifie (partiel) un projet |
-| DELETE | `/api/projets/:id` | Admin | Supprime un projet |
-| POST | `/api/messages` | Public (5 / heure) | Envoie un message de contact |
-| GET | `/api/messages?page=1&limite=20` | Admin | Liste paginée |
-| PATCH | `/api/messages/:id/lu` | Admin | Marque lu / non lu |
-| DELETE | `/api/messages/:id` | Admin | Supprime un message |
+| Méthode | URL                                 | Accès                      | Description                        |
+| ------- | ----------------------------------- | -------------------------- | ---------------------------------- |
+| GET     | `/api/sante`                        | Public                     | État de l'API et de la base        |
+| POST    | `/api/authentification/connexion`   | Public (5 essais / 15 min) | Ouvre la session (cookie httpOnly) |
+| POST    | `/api/authentification/deconnexion` | Public                     | Ferme la session                   |
+| GET     | `/api/authentification/moi`         | Admin                      | Utilisateur connecté               |
+| GET     | `/api/projets`                      | Public                     | Projets publiés                    |
+| GET     | `/api/projets/:id`                  | Public                     | Un projet publié                   |
+| GET     | `/api/projets/admin/liste`          | Admin                      | Tous les projets                   |
+| POST    | `/api/projets`                      | Admin                      | Crée un projet                     |
+| PUT     | `/api/projets/:id`                  | Admin                      | Modifie (partiel) un projet        |
+| DELETE  | `/api/projets/:id`                  | Admin                      | Supprime un projet                 |
+| POST    | `/api/messages`                     | Public (5 / heure)         | Envoie un message de contact       |
+| GET     | `/api/messages?page=1&limite=20`    | Admin                      | Liste paginée                      |
+| PATCH   | `/api/messages/:id/lu`              | Admin                      | Marque lu / non lu                 |
+| DELETE  | `/api/messages/:id`                 | Admin                      | Supprime un message                |
 
 Format des erreurs : `{ "succes": false, "message": "...", "details": [{ "champ": "...", "message": "..." }] }`.
 
@@ -88,16 +88,17 @@ Format des erreurs : `{ "succes": false, "message": "...", "details": [{ "champ"
     "publie": true
 }
 ```
+
 ## Dépannage
 
-| Symptôme | Cause | Solution |
-|----------|-------|----------|
-| `Variables d'environnement manquantes` | `.env` absent ou commande lancée hors de `serveur` | Se placer dans `serveur`, vérifier `.env` |
-| `JWT_SECRET doit contenir au moins 32 caractères` | Valeur `CHANGER_MOI` laissée | Générer un secret (voir Installation) |
-| `ECONNREFUSED 127.0.0.1:27017` | Service MongoDB arrêté | `Start-Service MongoDB` (PowerShell administrateur) |
-| `Identifiants incorrects.` alors que `.env` a changé | Le mot de passe est haché à la création, `.env` n'est lu qu'au lancement du script | `npm run admin:reinitialiser` |
-| `Un administrateur existe déjà` | Un seul administrateur autorisé | Utiliser `admin:reinitialiser` |
-| `MongooseServerSelectionError` avec Atlas | IP non autorisée dans Network Access | Ajouter l'IP actuelle |
+| Symptôme                                             | Cause                                                                              | Solution                                            |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------- |
+| `Variables d'environnement manquantes`               | `.env` absent ou commande lancée hors de `serveur`                                 | Se placer dans `serveur`, vérifier `.env`           |
+| `JWT_SECRET doit contenir au moins 32 caractères`    | Valeur `CHANGER_MOI` laissée                                                       | Générer un secret (voir Installation)               |
+| `ECONNREFUSED 127.0.0.1:27017`                       | Service MongoDB arrêté                                                             | `Start-Service MongoDB` (PowerShell administrateur) |
+| `Identifiants incorrects.` alors que `.env` a changé | Le mot de passe est haché à la création, `.env` n'est lu qu'au lancement du script | `npm run admin:reinitialiser`                       |
+| `Un administrateur existe déjà`                      | Un seul administrateur autorisé                                                    | Utiliser `admin:reinitialiser`                      |
+| `MongooseServerSelectionError` avec Atlas            | IP non autorisée dans Network Access                                               | Ajouter l'IP actuelle                               |
 
 ## Bonnes pratiques
 
