@@ -3,14 +3,16 @@
 Portfolio complet : vitrine publique (React), API REST (Express), base MongoDB et tableau de bord administrateur.
 Le site est lui-même une preuve de compétence full-stack : projets, messages et contenus sont gérés en base, sans redéploiement.
 
+Site en ligne : https://harley-ndouyi.vercel.app
+
 ## Avancement
 
-| Étape | Contenu | Statut |
-| ----- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------- | --- |
-| 1 | Serveur : API, modèles, authentification, sécurité, tests | Livrée et validée (MongoDB local, puis Atlas) |
-| 2 | Front public : thèmes clair/sombre, sections, formulaire de contact, WCAG AA | Livrée et fusionnée dans `main` |
-| 3 | Tableau de bord administrateur | Livrée et fusionnée dans `main` |
-| 4 | Déploiement : Atlas, Render, Vercel | En production (finitions : documentation, nettoyage des branches) | |
+| Étape | Contenu                                                                      | Statut                                        |
+| ----- | ---------------------------------------------------------------------------- | --------------------------------------------- |
+| 1     | Serveur : API, modèles, authentification, sécurité, tests                    | Livrée et validée (MongoDB local, puis Atlas) |
+| 2     | Front public : thèmes clair/sombre, sections, formulaire de contact, WCAG AA | Livrée et fusionnée dans `main`               |
+| 3     | Tableau de bord administrateur                                               | Livrée et fusionnée dans `main`               |
+| 4     | Déploiement : Atlas, Render, Vercel                                          | Livrée en production                          |
 
 ## Versions
 
@@ -21,35 +23,36 @@ Node v22.13.0, npm 10.9.0, Express 4, Mongoose 8, React 19.3.0, Vite 8.3.4, reac
 ```
 portfolio/
     README.md
-        client/                          (étape 2 : React + Vite + Sass)
-            .env.exemple
-            public/                      (images, CV, favicons, robots.txt)
-            src/
-                composants/              (V : miseEnPage, sections, ui)
-                contextes/               (C : thème et langue)
-                hooks/                   (C : logique réutilisable)
-                services/                (M : appels à l'API via axios)
-                donnees/                 (contenus statiques)
-                traductions/             (fr.json, en.json)
-                pages/
-                styles/                  (Sass : abstracts, base, composants)
-        serveur/                         (étape 1 : API Express)
-            README.md
-            package.json
-            .env.exemple
-            src/
-                app.js                   (assemblage Express)
-                serveur.js               (point d'entrée : connexion BD + écoute)
-                configuration/           (variables d'environnement, base de données)
-                modeles/                 (M : schémas Mongoose)
-                controleurs/             (C : logique de chaque route)
-                routes/                  (association URL -> contrôleur)
-                middlewares/             (authentification, erreurs, limiteurs, validation, CSRF)
-                validateurs/             (règles express-validator)
-                services/                (courriel)
-                utilitaires/             (JWT, erreurs, helpers)
-                scripts/                 (création de l'administrateur)
-            tests/
+    client/                          (étape 2 : React + Vite + Sass)
+        .env.exemple
+        vercel.json                  (proxy /api vers Render + repli application monopage)
+        public/                      (images, CV, favicons, robots.txt)
+        src/
+            composants/              (V : miseEnPage, sections, ui)
+            contextes/               (C : thème et langue)
+            hooks/                   (C : logique réutilisable)
+            services/                (M : appels à l'API via axios)
+            donnees/                 (contenus statiques)
+            traductions/             (fr.json, en.json)
+            pages/
+            styles/                  (Sass : abstracts, base, composants)
+    serveur/                         (étape 1 : API Express)
+        README.md
+        package.json
+        .env.exemple
+        src/
+            app.js                   (assemblage Express)
+            serveur.js               (point d'entrée : connexion BD + écoute)
+            configuration/           (variables d'environnement, base de données)
+            modeles/                 (M : schémas Mongoose)
+            controleurs/             (C : logique de chaque route)
+            routes/                  (association URL -> contrôleur)
+            middlewares/             (authentification, erreurs, limiteurs, validation, CSRF)
+            validateurs/             (règles express-validator)
+            services/                (courriel : notification via l'API Resend)
+            utilitaires/             (JWT, erreurs, helpers)
+            scripts/                 (création de l'administrateur)
+        tests/
 ```
 
 ## Diagrammes
@@ -62,7 +65,7 @@ flowchart LR
     A[Administrateur] --> C
     C -->|HTTPS + cookie httpOnly| S[API Express]
     S --> M[(MongoDB Atlas)]
-    S -.->|API courriel optionnelle| E[Courriel]
+    S -.->|API Resend, HTTPS| E[Courriel]
 ```
 
 ### Flux d'une requête (MVC)
@@ -143,7 +146,7 @@ sequenceDiagram
 - Vérifications en réel sur MongoDB local : connexion, session, création du projet Nody, lecture publique, refus sans session (401)
 - Prochaine étape : connexion à MongoDB Atlas, puis front React
 
-Reste à tester : modification et suppression de projets, routes de messages, envoi d'email (SMTP), cookies en production.
+Reste à tester à ce stade : modification et suppression de projets, routes de messages, envoi d'email et cookies en production (ces deux derniers points ont été traités à l'étape 4).
 
 ## Journal d'avancement (étape 2, 13-14 octobre 2026)
 
@@ -168,13 +171,13 @@ Reste à tester : modification et suppression de projets, routes de messages, en
 - **Ordre des projets** : à la création, si le champ est vide, le serveur attribue le plus grand `ordre` existant + 1 (plafond 999). Le champ reste modifiable ensuite. Les projets s'affichent par `ordre` croissant.
 - **Images** : noms de fichiers en minuscules avec tirets, par exemple `nody-accueil.webp`. Le nom de fichier sert de clé de traduction : `projets.legende.<nom>` et `projets.alt.<nom>` dans `fr.json` et `en.json`.
 
-### Reste à faire
+### Points reportés à l'étape 4 (tous traités)
 
-- Audit d'accessibilité final du tableau de bord (contraste du bouton « Confirmer la suppression »)
-- Envoi d'email (SMTP) et cookies en production
-- Étape 4 : déploiement (Atlas, Render, Vercel)
+- Contraste du bouton « Confirmer la suppression » : mesuré, conforme AA (au moins 4,5 : 1) dans les thèmes clair et sombre
+- Envoi d'email et cookies en production : traités, voir le journal de l'étape 4
+- Déploiement (Atlas, Render, Vercel) : voir le journal de l'étape 4
 
-## Journal d'avancement (étape 4, octobre 2026)
+## Journal d'avancement (étape 4, octobre-novembre 2026)
 
 ### Architecture de production
 
@@ -191,6 +194,13 @@ Visiteur → Vercel (client React, `/api/*` réécrit) → Render (API Express) 
 - Limiteurs de débit en mémoire : global 300 requêtes / 15 min, connexion 5 tentatives / 15 min, contact 5 messages / 60 min.
 - `trust proxy` vaut 4. Valeur mesurée dans les journaux Render : `X-Forwarded-For` contient 4 adresses (visiteur, Vercel, CDN Render, proxy interne Render). À remesurer si l'hébergement change, sinon le limiteur ne distingue plus les visiteurs.
 - `robots.txt` interdit l'indexation de `/admin` (simple consigne pour les moteurs de recherche, pas une protection : l'accès reste protégé par l'authentification).
+
+### Notification des messages par courriel
+
+- Chaque message du formulaire de contact déclenche un courriel de notification, envoyé par l'API [Resend](https://resend.com) en HTTPS. Render bloque le SMTP (ports 25, 465 et 587) sur le plan gratuit, d'où ce choix.
+- L'enregistrement en base reste prioritaire : l'appel à l'API n'est pas attendu, et une erreur d'envoi est seulement journalisée côté serveur.
+- Variables d'environnement sur Render : `COURRIEL_CLE_API`, `COURRIEL_DESTINATAIRE` et, en option, `COURRIEL_EXPEDITEUR` (par défaut `Portfolio <onboarding@resend.dev>`).
+- Limite : avec l'expéditeur de test `onboarding@resend.dev`, le destinataire doit être l'adresse du compte Resend. Écrire à d'autres adresses demanderait un domaine vérifié.
 
 ## Démarrage rapide
 
