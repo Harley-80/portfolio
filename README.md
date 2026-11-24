@@ -62,7 +62,7 @@ flowchart LR
     A[Administrateur] --> C
     C -->|HTTPS + cookie httpOnly| S[API Express]
     S --> M[(MongoDB Atlas)]
-    S -.->|SMTP optionnel| E[Courriel]
+    S -.->|API courriel optionnelle| E[Courriel]
 ```
 
 ### Flux d'une requête (MVC)
